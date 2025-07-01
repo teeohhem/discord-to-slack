@@ -33,23 +33,40 @@ Create a `.env` file in the project root with the following content:
 
 ---
 
-## Running the Bot
+## Creating a Discord Bot
 
-    python -m dotenv run -- python discord_to_slack_bot.py
+1. Go to the [Discord Developer Portal](https://discord.com/developers/applications)
+2. Click **"New Application"**
+3. Give it a name and click **"Create"**
+4. Go to the **"Bot"** tab and click **"Add Bot"**
+5. Copy the **Bot Token** (you'll use this in `DISCORD_TOKEN`)
+6. Under **Privileged Gateway Intents**, enable **Message Content Intent**
+7. Go to **"OAuth2" → "URL Generator"**, check:
+    - **Scopes**: `bot`
+    - **Bot Permissions**: `Read Messages/View Channels`, `Read Message History`
+8. Copy the generated URL and use it to invite the bot to your server
 
 ---
 
-## Deployment
+## Creating a Slack Webhook
 
-This project is ready for deployment on platforms like Replit, Railway, or Render.
+1. Go to the [Slack App Configuration Page](https://api.slack.com/apps)
+2. Click **"Create New App"** → From Scratch
+3. Name it and choose your Slack workspace
+4. In the left menu, click **"Incoming Webhooks"**
+5. Enable **"Activate Incoming Webhooks"**
+6. Click **"Add New Webhook to Workspace"**, then choose the channel
+7. Copy the Webhook URL (you'll use this in `SLACK_WEBHOOK_URL`)
 
-Files included:
+More info: [Slack Incoming Webhooks Guide](https://api.slack.com/messaging/webhooks)
 
-- `requirements.txt` for Python dependencies
-- `Procfile` to define a worker process
-- `.env` file for local development (do not commit this to version control)
+---
 
-On your chosen platform, set the environment variables via the dashboard.
+## Running the Bot
+
+Use environment variables (from `.env`) and run:
+
+    python -m dotenv run -- python discord_to_slack_bot.py
 
 ---
 
